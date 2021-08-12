@@ -253,14 +253,14 @@ const AddWeb = () => {
       <label className="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" htmlFor="inline-full-name">
         サムネイル
       </label>
-            {image &&
+
               <Thumbnail url={image}
               onUpload={(url) => {
         setImage(url)
         // updateProfile({ username, avatar_url: url })
       }}
             />
-      }
+
 
     </div>
 

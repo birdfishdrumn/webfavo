@@ -3,6 +3,8 @@ import { client } from 'src/libs/supabase'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import { useAvatar } from 'src/hooks/useAvatar';
+import NoImage from "public/noimage.png"
+import Image from "next/image"
 
 const Thumbnail = ({ url, onUpload }) => {
   const [uploading, setUploading] = useState(false)
@@ -59,7 +61,14 @@ const Thumbnail = ({ url, onUpload }) => {
           disabled={uploading}
         />
       </div>
-      <img src={url.indexOf('https') !== -1 ? url : imageUrl} className="w-30 h-30 my-4 mx-auto text-center" />
+      {url ?
+        <img src={url.indexOf('https') !== -1 ? url : imageUrl} className="w-30 h-30 my-4 mx-auto text-center" />
+        :
+          <Image width={150} height={105} src={NoImage}
+              className="object-cover"
+              />
+    }
+
 
     </div>
   )

@@ -24,7 +24,6 @@ type Props = {
 const Website:React.VFC<Props> = ({data,category,getWebSite,loading}) => {
   const [open, setOpen] = useRecoilState(dialogState)
   const [webList, setWebList] = useState(data)
-  const [dataList, setDataList] = useRecoilState(websiteState)
   const [id, setId] = useRecoilState(idState)
 
 

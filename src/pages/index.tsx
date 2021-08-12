@@ -37,7 +37,7 @@ const Container = (props: Props) => {
       if (!error && data) {
         return data;
       }
-      return [];
+      // return [];
     } catch (err) {
       alert(err)
     } finally {
