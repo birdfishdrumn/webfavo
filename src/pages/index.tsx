@@ -34,9 +34,9 @@ const Container = (props: Props) => {
       const { data, error } = await client
         .from("website")
         .select("*").eq("user_id", id)
-      if (!error && data) {
+
         return data;
-      }
+
       // return [];
     } catch (err) {
       alert(err)
@@ -48,7 +48,7 @@ const Container = (props: Props) => {
    const getWebSite = useCallback(async ():Promise<void> => {
     const data:Web[] = await getWeb();
     setData(data);
-  }, [user,setData]);
+  }, [user,data]);
 
   useEffect(() => {
     getWebSite();
