@@ -65,7 +65,7 @@ const AddWeb = () => {
     e.preventDefault()
     try {
       setIsLoading(true)
-      const res = await axios.get(`http://localhost:3008/api/ogp?url=${encodeURI(url)}`)
+      const res = await axios.get(`/api/ogp?url=${encodeURI(url)}`)
       const data = await res.data
       if (0 != Object.keys(data).length) {
         setIsLoading(false)

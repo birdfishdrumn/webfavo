@@ -48,7 +48,7 @@ const Container = (props: Props) => {
    const getWebSite = useCallback(async ():Promise<void> => {
     const data:Web[] = await getWeb();
     setData(data);
-  }, [user]);
+  }, [user,setData]);
 
   useEffect(() => {
     getWebSite();
