@@ -5,10 +5,11 @@ import { client } from 'src/libs/supabase'
 
 export const useAvatar = (url:string,type:string) => {
   const [imageUrl, setImageUrl] = useState(null)
+    const newUrl = url?.indexOf('https') === -1 && url
 
   useEffect(() => {
-    if (url) downloadImage(url)
-  }, [url])
+    if (newUrl) downloadImage(newUrl)
+  }, [newUrl])
 
   async function downloadImage(path) {
     try {

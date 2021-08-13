@@ -23,9 +23,8 @@ const Container = (props: Props) => {
 
 
   const { user } = Auth.useUser();
-  console.log(user)
   const id = user && user.id
-  console.log(props)
+
   const [data,setData] = useRecoilState(websiteState)
 
   const getWeb = async () => {
@@ -34,9 +33,10 @@ const Container = (props: Props) => {
       const { data, error } = await client
         .from("website")
         .select("*").eq("user_id", id)
+      // if (!error && data) {
 
-        return data;
-
+      // }
+      return data;
       // return [];
     } catch (err) {
       alert(err)
@@ -48,7 +48,7 @@ const Container = (props: Props) => {
    const getWebSite = useCallback(async ():Promise<void> => {
     const data:Web[] = await getWeb();
     setData(data);
-  }, [user,data]);
+  }, [user,data,getWeb]);
 
   useEffect(() => {
     getWebSite();
@@ -64,15 +64,23 @@ const Container = (props: Props) => {
       <div>
         <div className="justify-end mx-2 my-4 h-64">
           <div>
-             <div className="flex overflow-x-auto pb-4 mx-auto my-4">
+            {data ?
+              <>
+                 <div className="flex overflow-x-auto pb-4 mx-auto my-4">
             {categories.map((item => (
               <div
                 onClick={()=>setCategory(item.title)}
                 className={item.title === category ?  activeStyle  : style }
                 >{item.title}</div>
             )))}
-              </div>
-            <Website data={data} category={category} getWebSite={getWebSite} loading={loading}/>
+            </div>
+
+                <Website data={data} category={category} getWebSite={getWebSite} loading={loading} />
+              </>
+              :
+              <h1 className="font-bold text-center text-sm">エラーが発生しました。再読み込みしてください。</h1>
+            }
+
 
 
           </div>
