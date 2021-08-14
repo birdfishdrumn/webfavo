@@ -177,7 +177,7 @@ const AddWeb = () => {
     if (id) {
       getWebsiteEdit()
     }
-  }, []);
+  }, [open]);
 
 
 
