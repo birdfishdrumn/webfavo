@@ -45,7 +45,7 @@ const Header = () => {
   return (
     <div className="bg-white h-20">
       <div className="max-w-5xl flex  mx-auto  items-center px-4">
-        <div className="flex-1 py-4 font-extrabold ">
+        <div className="flex-1 py-4 font-extrabold  italic">
           <Link href="/">
                     Webファボ
           </Link>
