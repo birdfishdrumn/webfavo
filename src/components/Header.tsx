@@ -57,9 +57,9 @@ const Header = () => {
                  <ul className="flex items-center">
             <li className="items-center ">
               <PopOverItem item={imageUrl ?
-                <img className="w-10 h-10 rounded-full items-center my-4" src={imageUrl} />
+                <img className="w-10 h-10 rounded-full items-center" src={imageUrl} />
                 :
-                <Image src={NoImage} width={50} height={50} className="rounded-full my-4 items-center object-cover"/>
+                <Image src={NoImage} width={50} height={50} className="rounded-full items-center object-cover"/>
               } />
              </li>
         </ul>
