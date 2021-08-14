@@ -8,7 +8,10 @@ import { userState } from "src/store"
 import { useGetUser } from "src/hooks/useGetUser"
 import { useAvatar } from "src/hooks/useAvatar";
 import PopOverItem from "src/components/UIkit/PopOverItem";
-import {uidState} from "src/store"
+import { uidState } from "src/store"
+import NoImage from "public/images.png"
+import Image from "next/image"
+
 
 const Header = () => {
     const [session, setSession] = useState(null)
@@ -53,7 +56,11 @@ const Header = () => {
         {session ?
                  <ul className="flex items-center">
             <li className="items-center ">
-                  <PopOverItem item={  <img className="w-10 h-10 rounded-full items-center my-4"src={imageUrl ? imageUrl : defaultUser?.avatar_url} />}/>
+              <PopOverItem item={imageUrl ?
+                <img className="w-10 h-10 rounded-full items-center my-4" src={imageUrl} />
+                :
+                <Image src={NoImage} width={50} height={50} className="rounded-full my-4 items-center object-cover"/>
+              } />
              </li>
         </ul>
           :

@@ -10,8 +10,9 @@ export default function Example({item}) {
       <Menu as="div" className="relative inline-block text-left z-50">
         <div>
           <Menu.Button>
+            <div className="my-4">
             {item}
-
+            </div>
           </Menu.Button>
         </div>
         <Transition
