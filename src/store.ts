@@ -1,6 +1,7 @@
 import { atom } from "recoil";
 import { User } from "src/types/user";
 import { Web } from "src/types/website";
+import { Categories } from "src/types/category";
 
 export const userState = atom<User>({
   key: 'user',
@@ -23,6 +24,11 @@ export const dialogState= atom<boolean>({
 })
 
 export const idState= atom<string>({
-  key: 'idi',
+  key: 'id',
   default: "",
+})
+
+export const categoryState= atom<Categories[]>({
+  key: 'category',
+  default: [],
 })

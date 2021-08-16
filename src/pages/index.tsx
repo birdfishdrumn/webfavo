@@ -6,10 +6,12 @@ import Account from "src/components/Account";
 import { client } from "src/libs/supabase";
 import { Web } from "src/types/website";
 import Website from "src/components/Website";
+import AddCategory from "src/components/AddCategory";
 import { useGetCategory } from "src/hooks/useGetCategory"
-import useSWR from 'swr';
 import { websiteState } from "src/store";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { useRecoilSnapshot, useRecoilState } from "recoil"
+
 
 type Props = {
   children: ReactNode;
@@ -17,17 +19,19 @@ type Props = {
 };
 
 const Container = (props: Props) => {
- const {categories} = useGetCategory()
+
   const [category, setCategory] = useState("")
   const [loading,setLoading] = useState<boolean>(false)
 
 
   const { user } = Auth.useUser();
   const id = user && user.id
+  console.log(id)
+   const {categories} = useGetCategory(id)
 
   const [data,setData] = useRecoilState(websiteState)
 
-  const getWeb = async () => {
+  const getWeb = async (id:string) => {
     try {
       setLoading(true)
       const { data, error } = await client
@@ -46,9 +50,9 @@ const Container = (props: Props) => {
   };
 
    const getWebSite = useCallback(async ():Promise<void> => {
-    const data:Web[] = await getWeb();
+    const data:Web[] = await getWeb(id);
     setData(data);
-  }, [user,data,getWeb]);
+  }, [user,data,getWeb,id]);
 
   useEffect(() => {
     getWebSite();
@@ -66,14 +70,19 @@ const Container = (props: Props) => {
           <div>
             {data ?
               <>
+                <AddCategory/>
                  <div className="flex overflow-x-auto pb-4 mx-auto my-4">
-            {categories.map((item => (
+            {categories ? categories.map((item => (
               <div
                 onClick={()=>setCategory(item.title)}
                 className={item.title === category ?  activeStyle  : style }
                 >{item.title}</div>
-            )))}
-            </div>
+            )))
+               :
+                  <CircularProgress/>
+                  }
+                </div>
+                <h1 className="text-2xl font-extrabold text-center">{category ? category + "の一覧" : ""}</h1>
 
                 <Website data={data} category={category} getWebSite={getWebSite} loading={loading} />
               </>

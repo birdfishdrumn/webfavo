@@ -2,11 +2,11 @@ import React, { useState,useEffect,useCallback } from 'react'
 import axios from "axios"
 import { Web } from "src/types/website"
 import { client } from "src/libs/supabase"
-import { useRecoilValue } from 'recoil'
+
 import { uidState } from "src/store"
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { websiteState,dialogState,idState } from "src/store";
-import { useRecoilState } from "recoil";
+import { useRecoilState,useRecoilValue } from "recoil";
 import { useGetCategory  } from "src/hooks/useGetCategory";
 import { useGetWeb } from "src/hooks/useGetWeb";
 import SelectMenu from "src/components/UIkit/SelectMenu";
@@ -24,7 +24,7 @@ const AddWeb = () => {
   const [open, setOpen] = useRecoilState(dialogState)
   const [id, setId] = useRecoilState(idState)
   const [image, setImage] = useState<string>("");
-  const { categories } = useGetCategory()
+  const { categories } = useGetCategory(uuid)
 
 
     const getWeb= async ():Promise<any[]> => {

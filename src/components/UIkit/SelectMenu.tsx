@@ -46,7 +46,7 @@ const SelectBox: React.FC<PROPS> = (props) => {
         onChange={(event) => props.select(event.target.value)}
       >
         {/* 全体にmapを適用するわけではないので、すぐに{}で囲わないように注意する。 */}
-        {props.options.map((option) => (
+        {props.options && props.options.map((option) => (
           <MenuItem key={option.id} value={option.title}>
             <div>{option.title}</div>
           </MenuItem>

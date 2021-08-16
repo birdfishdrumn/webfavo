@@ -3,6 +3,8 @@ import "tailwindcss/tailwind.css"
 import { RecoilRoot } from 'recoil'
 import {useEffect} from "react"
 import Dialog from "src/components/UIkit/Dialog";
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 
 
 function MyApp({ Component, pageProps }) {
@@ -14,7 +16,8 @@ useEffect(() => {
     }
   }, [])
   return  (
-  <RecoilRoot>
+    <RecoilRoot>
+      <ToastContainer/>
       <Component {...pageProps} />
       <Dialog/>
     </RecoilRoot>
