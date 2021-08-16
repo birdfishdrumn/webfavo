@@ -11,7 +11,8 @@ const AddCategory = () => {
   const [category, setCategory] = useState<string>("")
     const [categories, setCategories] = useRecoilState(categoryState)
 
-   const uuid = useRecoilValue(uidState)
+  const uuid = useRecoilValue(uidState)
+  const categoryTitleList = categories && categories.map((cat)=>cat.title)
 
   const inputCategory = (e) => {
     setCategory(e.target.value)
@@ -19,9 +20,14 @@ const AddCategory = () => {
   }
 
   const categoryAdd = async() => {
-    if (category === "") {
+    if (category === "" ) {
      return
     }
+    if (categoryTitleList.includes(category)) {
+      toast.error(`${category}は既に存在しています。`)
+      return
+    }
+
             const { data, error } = await client
         .from("category")
               .insert([{

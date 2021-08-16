@@ -50,6 +50,30 @@ export default function Example({item}) {
                   </Link>
                 )}
               </Menu.Item>
+                  <Menu.Item>
+                {({ active }) => (
+                  <Link href="/editcat">
+                  <button
+                    className={`${
+                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                  >
+                    {active ? (
+                      <ArchiveInactiveIcon
+                        className="w-5 h-5 mr-2"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <ArchiveInactiveIcon
+                        className="w-5 h-5 mr-2"
+                        aria-hidden="true"
+                      />
+                    )}
+                    カテゴリー編集
+                  </button>
+                  </Link>
+                )}
+              </Menu.Item>
 
             </div>
 

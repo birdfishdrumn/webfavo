@@ -66,9 +66,7 @@ const Header = () => {
           :
                 <div>
           <ul className="flex items-center">
-            <Link href="/howto">
-            <li className="my-4 font-semibold mx-8">使い方</li>
-            </Link>
+
              <li className="my-4 py-2 px-4 text-white font-semibold  rounded-lg bg-indigo-500 hover:bg-indigo-700">Login</li>
         </ul>
         </div>

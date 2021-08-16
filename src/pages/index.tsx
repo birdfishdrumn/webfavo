@@ -33,15 +33,17 @@ const Container = (props: Props) => {
 
   const getWeb = async (id:string) => {
     try {
-      setLoading(true)
-      const { data, error } = await client
-        .from("website")
-        .select("*").eq("user_id", id)
-      // if (!error && data) {
+      if (id) {
+        setLoading(true)
+        const { data, error } = await client
+          .from("website")
+          .select("*").eq("user_id", id)
+        // if (!error && data) {
 
-      // }
-      return data;
-      // return [];
+        // }
+        return data;
+        // return [];
+      }
     } catch (err) {
       alert(err)
     } finally {

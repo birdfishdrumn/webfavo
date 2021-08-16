@@ -29,6 +29,6 @@ export const idState= atom<string>({
 })
 
 export const categoryState= atom<Categories[]>({
-  key: 'category',
+  key: 'categories',
   default: [],
 })
