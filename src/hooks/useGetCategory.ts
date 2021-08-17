@@ -2,8 +2,9 @@ import { useEffect, useState,useCallback } from 'react'
 import { client } from 'src/libs/supabase'
 import { useRecoilState } from "recoil";
 import { categoryState } from "src/store";
+import {Categories} from "src/types/category"
 
-export const useGetCategory = (id) => {
+export const useGetCategory = (id:string) => {
 
 
   const [categories, setCategories] = useRecoilState(categoryState)
@@ -22,8 +23,11 @@ export const useGetCategory = (id) => {
   };
 
     const getCategoryList = useCallback(async () => {
-      const data = await getCategory(id);
-      setCategories(data)
+      const data: Categories[] | undefined = await getCategory(id);
+      if (data) {
+              setCategories(data)
+      }
+
     }, [id]);
 
     useEffect(() => {

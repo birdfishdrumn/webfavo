@@ -6,11 +6,16 @@ import { useAvatar } from 'src/hooks/useAvatar';
 import NoImage from "public/noimage.png"
 import Image from "next/image"
 
-const Thumbnail = ({ url, onUpload }) => {
-  const [uploading, setUploading] = useState(false)
-  const { imageUrl } = useAvatar(url, "websiteimage")
+interface Props {
+  url: string;
+  onUpload: (string:string) => any;
+}
 
-   const  uploadAvatar =async(event):Promise<void> =>{
+const Thumbnail:React.VFC<Props> = ({ url, onUpload }) => {
+  const [uploading, setUploading] = useState(false)
+  const { imageUrl }:any = useAvatar(url, "websiteimage")
+
+   const  uploadAvatar =async(event: React.ChangeEvent<HTMLInputElement>):Promise<void> =>{
     try {
       setUploading(true)
 
@@ -32,7 +37,7 @@ const Thumbnail = ({ url, onUpload }) => {
       }
 
       onUpload(filePath)
-    } catch (error) {
+    } catch (error:any) {
       alert(error.message)
     } finally {
       setUploading(false)
@@ -62,7 +67,7 @@ const Thumbnail = ({ url, onUpload }) => {
         />
       </div>
       {url ?
-        <img src={url.indexOf('https') !== -1 ? url : imageUrl} className="w-30 h-30 my-4 mx-auto text-center" />
+        <img src={url?.indexOf('https') !== -1 ? url : imageUrl} className="w-30 h-30 my-4 mx-auto text-center" />
         :
           <Image width={150} height={105} src={NoImage}
               className="object-cover"

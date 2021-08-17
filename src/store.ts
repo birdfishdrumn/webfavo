@@ -3,7 +3,7 @@ import { User } from "src/types/user";
 import { Web } from "src/types/website";
 import { Categories } from "src/types/category";
 
-export const userState = atom<User>({
+export const userState = atom<User | null>({
   key: 'user',
   default: null,
 })
@@ -15,7 +15,7 @@ export const uidState = atom<string>({
 
 export const websiteState= atom<Web[]>({
   key: 'website',
-  default: null,
+  default: [],
 })
 
 export const dialogState= atom<boolean>({

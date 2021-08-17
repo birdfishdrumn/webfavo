@@ -4,14 +4,14 @@ import { client } from 'src/libs/supabase'
 
 
 export const useAvatar = (url:string,type:string) => {
-  const [imageUrl, setImageUrl] = useState(null)
+  const [imageUrl, setImageUrl] = useState("")
     const newUrl = url?.indexOf('https') === -1 && url
 
   useEffect(() => {
     if (newUrl) downloadImage(newUrl)
   }, [newUrl])
 
-  async function downloadImage(path) {
+  async function downloadImage(path:string) {
     try {
       const { data, error } = await client.storage.from(type).download(path)
       if (error) {
@@ -20,7 +20,7 @@ export const useAvatar = (url:string,type:string) => {
       const url = URL.createObjectURL(data)
       console.log(url)
       setImageUrl(url)
-    } catch (error) {
+    } catch (error:any) {
       console.log('Error downloading image: ', error.message)
     }
   }
