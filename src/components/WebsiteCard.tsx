@@ -7,8 +7,16 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import NoImage from "public/noimage.png"
 import Image from "next/image"
 import Menu from "src/components/UIkit/Menu"
+import {Web} from "src/types/website"
 
-const WebsiteCard = ({ item ,handleEdit,handleRemove,loading}) => {
+interface Props {
+  item:Web
+  handleEdit:(string:string) => any
+  handleRemove:(string:string) => any
+  loading: boolean;
+}
+
+const WebsiteCard:React.VFC<Props> = ({ item ,handleEdit,handleRemove,loading}) => {
       const { imageUrl } = useAvatar(item.image_url, "websiteimage")
   return (
 
@@ -26,11 +34,8 @@ const WebsiteCard = ({ item ,handleEdit,handleRemove,loading}) => {
                 <img
             alt="..."
               src={
-                item.image_url ?
-
+                item.image_url &&
                   item.image_url.indexOf('https') !== -1 ? item.image_url : imageUrl
-                  :
-                   NoImage
                 }
             className="h-24 w-30 rounded  mx-auto object-cover mt-4"
           />

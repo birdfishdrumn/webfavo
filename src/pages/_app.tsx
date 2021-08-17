@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }:any) {
 useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')

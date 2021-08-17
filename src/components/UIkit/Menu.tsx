@@ -18,7 +18,7 @@ const MenuButton: React.FC<Props>= ({handleEdit,handleRemove,id}) => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event:React.ChangeEvent) => {
+  const handleClick = (event:any) => {
     setAnchorEl(event.currentTarget);
   };
 

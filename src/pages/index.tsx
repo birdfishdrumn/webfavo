@@ -22,10 +22,12 @@ const Container = (props: Props) => {
 
   const [category, setCategory] = useState("")
   const [loading,setLoading] = useState<boolean>(false)
-
-
   const { user } = Auth.useUser();
-  const id = user && user.id
+  let id = ""
+  if (user) {
+   id = user?.id
+  }
+
   console.log(id)
    const {categories} = useGetCategory(id)
 
@@ -51,9 +53,15 @@ const Container = (props: Props) => {
     }
   };
 
-   const getWebSite = useCallback(async ():Promise<void> => {
-    const data:Web[] = await getWeb(id);
-    setData(data);
+  const getWebSite = useCallback(async (): Promise<void> => {
+    if (id) {
+      const data:any= await getWeb(id);
+      setData(data);
+
+     }
+
+
+
   }, [user,data,getWeb,id]);
 
   useEffect(() => {
@@ -89,7 +97,7 @@ const Container = (props: Props) => {
                 <Website data={data} category={category} getWebSite={getWebSite} loading={loading} />
               </>
               :
-              <h1 className="font-bold text-center text-sm">エラーが発生しました。再読み込みしてください。</h1>
+                           <CircularProgress/>
             }
 
 
@@ -103,7 +111,7 @@ const Container = (props: Props) => {
   return <>{props.children}</>;
 };
 
-const Home = ({ category }) => {
+const Home = ( ) => {
 
   return (
     <Layout>

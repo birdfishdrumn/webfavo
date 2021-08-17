@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { client } from "src/libs/supabase";
 import { categoryState } from "src/store";
+import { Categories} from "src/types/category"
 
 const editcat = () => {
   const uid = useRecoilValue(uidState)
@@ -33,7 +34,10 @@ const editcat = () => {
     const getCategoryList = useCallback(async () => {
       const data = await getCategory(uid);
       console.log(data)
-      setCategories(data)
+      if (data) {
+              setCategories(data)
+      }
+
     }, [uid]);
 
     useEffect(() => {
@@ -44,12 +48,12 @@ const editcat = () => {
 
   const style = "text-sm relative flex-none  text-red-400 border-2 border-red-300 text-center px-2 py-1 mx-1 rounded-xl cursor-pointer inline-block my-2"
 
-  const setCategoryTitle = (item)=> {
+  const setCategoryTitle = (item:Categories)=> {
     setCategory(item.title)
     setId(item.id)
   }
 
-    const inputCategory = (e) => {
+    const inputCategory = (e:React.ChangeEvent<HTMLInputElement>) => {
     setCategory(e.target.value)
     }
 

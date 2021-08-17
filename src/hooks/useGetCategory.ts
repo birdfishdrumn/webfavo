@@ -32,7 +32,6 @@ export const useGetCategory = (id:string) => {
 
     useEffect(() => {
    getCategoryList()
-    // setTitles(data);
   }, [id])
 
 

@@ -22,7 +22,7 @@ const Header = () => {
 
   useEffect(() => {
     if (client.auth.session()) {
-         const {user} = client.auth.session()
+         const {session} = client.auth.session()
       setSession(user)
       setUid(user?.id)
     } else {
@@ -41,7 +41,7 @@ const Header = () => {
     })
   }, [uid,router,session])
   console.log(session)
-  const defaultUser = session?.user_metadata
+  // const defaultUser = session?.user_metadata
   const {imageUrl} = useAvatar(avatar_url,"avatars")
 
 

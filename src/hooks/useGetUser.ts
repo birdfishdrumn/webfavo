@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { client } from 'src/libs/supabase'
 
 
-export const useGetUser = (session) => {
+export const useGetUser = (session:any) => {
 
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState(null)
@@ -18,7 +18,7 @@ export const useGetUser = (session) => {
       let { data, error, status } = await client
         .from('profiles')
         .select(`username, avatar_url`)
-        .eq('user_id', user.id)
+        .eq('user_id', user?.id)
         .single()
 
       if (error && status !== 406) {
@@ -30,7 +30,7 @@ export const useGetUser = (session) => {
 
         setAvatarUrl(data.avatar_url)
       }
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message)
     } finally {
       setLoading(false)
