@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useCallback } from 'react'
+import React, { useState,useEffect,useCallback, ReactEventHandler } from 'react'
 import axios from "axios"
 import { Web } from "src/types/website"
 import { client } from "src/libs/supabase"
@@ -43,17 +43,17 @@ const AddWeb = () => {
   }, []);
 
 
-  const inputTitle = async(e) => {
+  const inputTitle = async(e:React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value)
 
   }
 
-    const inputUrl = async(e) => {
+    const inputUrl = async(e:React.ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value)
 
     }
 
-    const inputDescription = async(e) => {
+    const inputDescription = async(e:React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value)
     }
 
@@ -255,7 +255,7 @@ const AddWeb = () => {
       </label>
 
               <Thumbnail url={image}
-              onUpload={(url) => {
+              onUpload={(url:string) => {
         setImage(url)
         // updateProfile({ username, avatar_url: url })
       }}

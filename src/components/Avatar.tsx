@@ -7,7 +7,7 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 interface Props {
   url: string;
   size?: number;
-  onUpload:(string)=>any
+  onUpload:(string:string)=>any
 }
 
 const Avatar:React.VFC<Props>  = ({ url, size, onUpload }) =>{
@@ -16,7 +16,7 @@ const Avatar:React.VFC<Props>  = ({ url, size, onUpload }) =>{
   const {imageUrl} = useAvatar(url,"avatars")
 
 
-  const  uploadAvatar =async(event):Promise<void> =>{
+  const  uploadAvatar =async(event:React.ChangeEvent<HTMLInputElement>):Promise<void> =>{
     try {
       setUploading(true)
 
@@ -38,7 +38,7 @@ const Avatar:React.VFC<Props>  = ({ url, size, onUpload }) =>{
       }
 
       onUpload(filePath)
-    } catch (error) {
+    } catch (error: unknown | any) {
       alert(error.message)
     } finally {
       setUploading(false)

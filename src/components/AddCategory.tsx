@@ -14,7 +14,7 @@ const AddCategory = () => {
   const uuid = useRecoilValue(uidState)
   const categoryTitleList = categories && categories.map((cat)=>cat.title)
 
-  const inputCategory = (e) => {
+  const inputCategory = (e:React.ChangeEvent<HTMLInputElement>) => {
     setCategory(e.target.value)
 
   }

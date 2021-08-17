@@ -9,8 +9,8 @@ import { Edit, Delete } from "@material-ui/icons"
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 interface Props {
-  handleEdit: (string) =>any
-  handleRemove: (string) =>any
+  handleEdit: (string:string) =>any
+  handleRemove: (string:string) =>any
   id:string
 }
 
@@ -18,7 +18,7 @@ const MenuButton: React.FC<Props>= ({handleEdit,handleRemove,id}) => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
+  const handleClick = (event:React.ChangeEvent) => {
     setAnchorEl(event.currentTarget);
   };
 

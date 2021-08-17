@@ -69,9 +69,11 @@ const Website:React.VFC<Props> = ({data,category,getWebSite,loading}) => {
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-2">
 
 
-      {webList?.map((item) => (
+            {data &&
+              webList?.map((item) => (
         <WebsiteCard item={item} handleRemove={handleRemove} handleEdit={handleEdit} loading={loading}/>
       ))}
+
           </div>
            <Skeleton variant="circle"/>
 
