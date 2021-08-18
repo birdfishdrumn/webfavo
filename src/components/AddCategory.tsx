@@ -37,11 +37,14 @@ const AddCategory = () => {
      if (error) {
         alert(error);
         console.log(error)
-     } else {
-       toast.success(`${category}をカテゴリーに追加しました！`)
+    }
+    if (data) {
+          toast.success(`${category}をカテゴリーに追加しました！`)
        setCategory("")
-        setCategories((prevState: Categories[]) => [...prevState, ...data])
-      }
+        setCategories((prevState: Categories[]) => [...prevState, data[0]])
+
+    }
+
 
   }
   return (

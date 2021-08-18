@@ -5,9 +5,9 @@ import { client } from 'src/libs/supabase'
 export const useGetUser = (session:any) => {
 
   const [loading, setLoading] = useState(true)
-  const [username, setUsername] = useState(null)
+  const [username, setUsername] = useState("")
 
-  const [avatar_url, setAvatarUrl] = useState(null)
+  const [avatar_url, setAvatarUrl] = useState("")
 
     async function getProfile() {
     try {

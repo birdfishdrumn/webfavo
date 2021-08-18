@@ -11,18 +11,25 @@ import PopOverItem from "src/components/UIkit/PopOverItem";
 import { uidState } from "src/store"
 import NoImage from "public/images.png"
 import Image from "next/image"
+import { Session } from '@supabase/supabase-js';
 
 
 const Header = () => {
-    const [session, setSession] = useState(null)
+    const [session, setSession] = useState<Session>()
   const [user, setUser] = useRecoilState(userState)
     const [uid, setUid] = useRecoilState(uidState)
-  const {username,avatar_url} = useGetUser(session)
+  const { username, avatar_url } = useGetUser(session)
+
+    const { imageUrl } = useAvatar(avatar_url, "avatars")
+
+
+
   console.log(avatar_url)
 
   useEffect(() => {
     if (client.auth.session()) {
-         const {session} = client.auth.session()
+      const { user }:any = client.auth.session()
+      console.log(client.auth.session)
       setSession(user)
       setUid(user?.id)
     } else {
@@ -31,7 +38,10 @@ const Header = () => {
 
 
     client.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
+      if (session) {
+         setSession(session)
+      }
+
       if (user) {
                 setUid(user?.id)
       } else {
@@ -42,7 +52,7 @@ const Header = () => {
   }, [uid,router,session])
   console.log(session)
   // const defaultUser = session?.user_metadata
-  const {imageUrl} = useAvatar(avatar_url,"avatars")
+
 
 
   return (

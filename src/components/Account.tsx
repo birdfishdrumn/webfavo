@@ -8,9 +8,9 @@ import NotUser from "src/components/NotUser";
 export default function Account({  }) {
 
   const [loading, setLoading] = useState(true)
-  const [username, setUsername] = useState(null)
+  const [username, setUsername] = useState("")
 
-  const [avatar_url, setAvatarUrl] = useState(null)
+  const [avatar_url, setAvatarUrl] = useState("")
        const user = client.auth.user()
   useEffect(() => {
     if (user) {
@@ -42,19 +42,25 @@ export default function Account({  }) {
         setAvatarUrl(data.avatar_url)
         console.log(data)
       }
-    } catch (error) {
+    } catch (error:any) {
       alert(error.message)
     } finally {
       setLoading(false)
     }
   }
 
-  async function updateProfile({ username, avatar_url }) {
+
+  interface Props {
+    username: string;
+    avatar_url:string
+  }
+
+  async function updateProfile({ username, avatar_url }:Props) {
     try {
       setLoading(true)
       const user = client.auth.user()
       const updates = {
-        user_id: user.id,
+        user_id: user?.id,
         username,
 
         avatar_url,
@@ -63,17 +69,17 @@ export default function Account({  }) {
       if (username) {
        let { error } = await client.from('profiles').update(updates, {
         returning: 'minimal', // Don't return the value after inserting
-      }).eq("user_id", user.id)
+      }).eq("user_id", user?.id)
       } else {
          let { error } = await client.from('profiles').upsert(updates, {
         returning: 'minimal', // Don't return the value after inserting
-         }).eq("user_id", user.id)
+         }).eq("user_id", user?.id)
           if (error) {
         throw error
       }
       }
 
-    } catch (error) {
+    } catch (error:any) {
       alert(error.message)
     } finally {
       setLoading(false)
